@@ -1,0 +1,11 @@
+extends inc/layout.pug
+block header
+	title #{title}
+	style.
+		.btn{cursor:pointer;}
+block content
+	ul
+		each item in items
+			li <a href="/list/#{item._id}")> 姓名：#{item.name} 年龄：#{item.age} </a>
+		else 
+			li nothing

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>exp</title>
+</head>
+<body>
+	<form action="/form_post" method="post">
+		<p>账号 <input type="text" name="username" /></p>
+		<p>密码 <input type="password" name="password" /></p>
+		<p><input type="submit" value="登陆"></p>
+	</form>
+
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<input type="file" name="upfile" />
+		<input type="submit" value="上传文件">
+	</form>
+</body>
+</html>

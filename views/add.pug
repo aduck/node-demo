@@ -1,0 +1,11 @@
+extends ./inc/layout.pug
+block header
+	title #{title}
+block content
+	form(action="/addInfo",method="post")
+		p 姓名 
+			input(type='text',name='username',placeholder='姓名')
+		p 年龄
+			input(type='text',name='age',placeholder='年龄')
+		p
+			button 提交

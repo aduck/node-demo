@@ -42,4 +42,12 @@ PersonSchema.statics.findById=function(id,cb){
 	this.findOne({_id:id}).select('name age').exec(cb)
 }
 
+PersonSchema.statics.updateInfo=function(condition,o,cb){
+	this.update(condition,{$set:o},{upsert:true}).exec(cb)
+}
+
+PersonSchema.statics.removeInfo=function(condition,cb){
+	this.remove(condition).exec(cb)
+}
+
 module.exports=PersonSchema

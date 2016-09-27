@@ -1,11 +1,17 @@
 extends inc/layout.pug
 block header
 	title #{title}
-	style.
-		.btn{cursor:pointer;}
+	link(rel='stylesheet',href='css/style.css')
 block content
-	ul
+	ul.infoLists
 		each item in items
-			li <a href="/list/#{item._id}")> 姓名：#{item.name} 年龄：#{item.age} </a>
+			li 
+				a(href="/list/"+item._id) 姓名：#{item.name} 年龄：#{item.age}
+				| 　　
+				a(href="/update/"+item._id) 编辑
+				| 　
+				a(href="/remove/"+item._id) 删除
 		else 
-			li nothing
+			li 暂无内容
+	p.infoAdd
+		a(href='/add') 添加数据

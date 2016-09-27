@@ -1,0 +1,36 @@
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	font-size:14px;
+	font-family:'Microsoft Yahei';
+	color:#333;
+}
+ul,li{
+	list-style:none;
+}
+a{
+	color:inherit;
+	text-decoration:none;
+}
+.infoLists li{
+	text-indent:2em;
+	line-height:1.5;
+}
+.infoAdd{
+	margin-top:20px;
+	padding-left:30px;
+}
+.infoAdd a{display:block;width:100px;height:25px;line-height:25px;text-align:center;background:#333;color:#fff;}
+.header{
+	margin-bottom:20px;
+}
+.header h2{
+	font-size:24px;
+	color:#333;
+	font-weight:100;
+}
+.footer{
+	margin-top:30px;
+}

@@ -2,10 +2,20 @@ extends ./inc/layout.pug
 block header
 	title #{title}
 block content
-	form(action="/addInfo",method="post")
-		p 姓名 
-			input(type='text',name='username',placeholder='姓名')
-		p 年龄
-			input(type='text',name='age',placeholder='年龄')
-		p
-			button 提交
+	if !item
+		form(action="/addInfo",method="post")
+			p 姓名 
+				input(type='text',name='username',placeholder='姓名')
+			p 年龄
+				input(type='text',name='age',placeholder='年龄')
+			p
+				button 提交
+	else
+		form(action="/updateInfo",method="post")
+			input(type='hidden',name='uid',value=`${item._id}`)
+			p 姓名 
+				input(type='text',name='username',placeholder='姓名',readonly='true',value=`${item.name}`)
+			p 年龄
+				input(type='text',name='age',placeholder='年龄',value=`${item.age}`)
+			p
+				button 提交

@@ -18,11 +18,11 @@ var PersonSchema=new mongoose.Schema({
 PersonSchema.pre('save',function(next){
 	// this指向model实例
 	// this.isNew属性判断是否为新数据
-	if(this.isNew){
-		this.meta.createAt=this.meta.updateAt=Date.now()
-	}else{
-		this.meta.updateAt=Date.now()
-	}
+	this.meta.createAt=this.meta.updateAt=Date.now()
+	next()
+})
+PersonSchema.pre('update',function(next){
+	this.update({},{$set:{'meta.updateAt':Date.now()}})
 	next()
 })
 

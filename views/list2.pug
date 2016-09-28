@@ -1,0 +1,33 @@
+extends inc/layout.pug
+block header
+	title #{title}
+	link(rel='stylesheet',href='css/style.css')
+block content
+	ul.infoLists
+		each item in items
+			li 
+				a(href="/list/"+item._id) 姓名：#{item.name} 年龄：#{item.age}
+				| 　　
+				a(href="/update/"+item._id) 编辑
+				| 　
+				a(href="/remove/"+item._id) 删除
+		else 
+			li 暂无内容
+	if items.length
+		.page
+			if currentPage==1 
+				span 上一页
+			else
+				a(href='/list_'+(parseInt(currentPage)-1)) 上一页
+			- for (n=1;n<=count;n++){
+					if n!=currentPage
+						a(href='/list_'+n) #{n}
+					else
+						span #{n}
+			- }
+			if currentPage==count
+				span 下一页
+			else
+				a(href='/list_'+(parseInt(currentPage)+1)) 下一页
+	p.infoAdd
+		a(href='/add') 添加数据

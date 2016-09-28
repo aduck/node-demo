@@ -10,32 +10,24 @@ var urlencodedParser=bodyParse.urlencoded({extended:false})
 // 设置模板引擎和视图目录
 app.set('views','./views')
 app.set('view engine','pug')
-// 设置静态文件
 app.use(express.static(path.join(__dirname,'public')))
 
 // 连接数据库
 mongoose.connect('mongodb://localhost/test');
 
 // 列表页
-app.get('/list_:id',function(req,res){
-	var pid=req.params.id || 1  //当前页码
-	var n=5  // 每页显示条数
-	var pagenum  // 总页数
-	Person.count({},function(err,count){
+app.get('/list',function(req,res){
+	Person.fetch(function(err,persons){
 		if(err){
 			console.log(err)
-		}
-		pagenum=Math.ceil(count/n)
-		Person.find({}).limit(n).skip((pid-1)*n).sort({'meta.updateAt':-1}).exec(function(err,ps){
-			res.render('list2',{
-				title:'列表页_'+pid,
-				items:ps,
-				count:pagenum,
-				currentPage:pid,
+		}else{
+			res.render('list',{
+				title:'列表页',
+				items:persons,
 				pretty:' '
 			})
-		})
-	})
+		}
+	})   
 })
 
 // 详情页
@@ -97,7 +89,7 @@ app.post('/addInfo',urlencodedParser,function(req,res){
 			console.log(err)
 		}else{
 			console.log('添加成功');
-			res.redirect('/list_1');
+			res.redirect('/list');
 		}
 	})
 })
@@ -110,7 +102,7 @@ app.post('/updateInfo',urlencodedParser,function(req,res){
 		if(err){
 			console.log(err)
 		}else{
-			res.redirect('/list_1');
+			res.redirect('/list');
 		}
 	})
 })
@@ -123,7 +115,7 @@ app.get('/remove/:id',function(req,res){
 			console.log(err)
 		}else{
 			console.log('删除成功');
-			res.redirect('/list_1');
+			res.redirect('/list');
 		}
 	})
 })
